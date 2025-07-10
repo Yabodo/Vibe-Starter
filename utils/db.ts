@@ -40,11 +40,14 @@ if (shouldUseMock) {
           createdAt: new Date(),
           updatedAt: new Date(),
           twoFactorEnabled: false,
+          isActive: true,
+          lastLoginAt: null,
+          role: 'USER',
           ...data 
         }
         this.mockData.set(`user:email:${data.email}`, user)
         this.mockData.set(`user:id:${user.id}`, user)
-        console.log(`✅ Mock created user: ${data.email}`)
+        console.log(`✅ Mock created user: ${data.email} with role: ${user.role}`)
         return Promise.resolve(user)
       },
       
@@ -72,6 +75,124 @@ if (shouldUseMock) {
           this.mockData.delete(`user:id:${user.id}`)
         }
         return Promise.resolve(user || null)
+      },
+      
+      findMany: ({ where, skip, take, select, orderBy }: any) => {
+        const users = Array.from(this.mockData.values()).filter((data: any) => 
+          data.email && data.id && data.id.startsWith('mock-')
+        )
+        
+        let filteredUsers = users
+        
+        // Apply filters
+        if (where) {
+          filteredUsers = users.filter((user: any) => {
+            let matches = true
+            
+            if (where.OR) {
+              matches = where.OR.some((condition: any) => {
+                if (condition.email?.contains) {
+                  return user.email.toLowerCase().includes(condition.email.contains.toLowerCase())
+                }
+                if (condition.name?.contains) {
+                  return user.name?.toLowerCase().includes(condition.name.contains.toLowerCase())
+                }
+                return false
+              })
+            }
+            
+            if (where.role) {
+              matches = matches && user.role === where.role
+            }
+            
+            if (where.isActive !== undefined) {
+              matches = matches && user.isActive === where.isActive
+            }
+            
+            return matches
+          })
+        }
+        
+        // Apply ordering
+        if (orderBy?.createdAt === 'desc') {
+          filteredUsers.sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+        }
+        
+        // Apply pagination
+        if (skip || take) {
+          const start = skip || 0
+          const end = take ? start + take : filteredUsers.length
+          filteredUsers = filteredUsers.slice(start, end)
+        }
+        
+        // Apply selection
+        if (select) {
+          filteredUsers = filteredUsers.map((user: any) => {
+            const selectedUser: any = {}
+            Object.keys(select).forEach(key => {
+              if (select[key] === true) {
+                selectedUser[key] = user[key]
+              } else if (typeof select[key] === 'object' && key === 'subscription') {
+                const sub = this.mockData.get(`subscription:${user.id}`)
+                if (sub && select[key].select) {
+                  selectedUser[key] = {}
+                  Object.keys(select[key].select).forEach(subKey => {
+                    selectedUser[key][subKey] = sub[subKey]
+                  })
+                } else {
+                  selectedUser[key] = sub
+                }
+              }
+            })
+            return selectedUser
+          })
+        }
+        
+        return Promise.resolve(filteredUsers)
+      },
+      
+      count: ({ where }: any) => {
+        const users = Array.from(this.mockData.values()).filter((data: any) => 
+          data.email && data.id && data.id.startsWith('mock-')
+        )
+        
+        if (!where) return Promise.resolve(users.length)
+        
+        const filteredUsers = users.filter((user: any) => {
+          let matches = true
+          
+          if (where.OR) {
+            matches = where.OR.some((condition: any) => {
+              if (condition.email?.contains) {
+                return user.email.toLowerCase().includes(condition.email.contains.toLowerCase())
+              }
+              if (condition.name?.contains) {
+                return user.name?.toLowerCase().includes(condition.name.contains.toLowerCase())
+              }
+              return false
+            })
+          }
+          
+          if (where.role) {
+            matches = matches && user.role === where.role
+          }
+          
+          if (where.isActive !== undefined) {
+            matches = matches && user.isActive === where.isActive
+          }
+          
+          if (where.lastLoginAt?.gte) {
+            matches = matches && user.lastLoginAt && new Date(user.lastLoginAt) >= new Date(where.lastLoginAt.gte)
+          }
+          
+          if (where.createdAt?.gte) {
+            matches = matches && new Date(user.createdAt) >= new Date(where.createdAt.gte)
+          }
+          
+          return matches
+        })
+        
+        return Promise.resolve(filteredUsers.length)
       }
     }
     
@@ -119,6 +240,48 @@ if (shouldUseMock) {
       create: (data: any) => Promise.resolve({ id: 'mock-account-' + Date.now(), ...data }),
       update: () => Promise.resolve({}),
       delete: () => Promise.resolve({})
+    }
+    
+    userActivity = {
+      findMany: ({ take, orderBy, select }: any) => {
+        // Mock activity data
+        const activities = [
+          {
+            id: 'activity-1',
+            action: 'user_login',
+            details: '{"ip": "192.168.1.1"}',
+            createdAt: new Date(Date.now() - 1000 * 60 * 15),
+            user: { email: 'user@example.com', name: 'Test User' }
+          },
+          {
+            id: 'activity-2', 
+            action: 'subscription_upgrade',
+            details: '{"from": "FREE", "to": "PREMIUM"}',
+            createdAt: new Date(Date.now() - 1000 * 60 * 30),
+            user: { email: 'premium@example.com', name: 'Premium User' }
+          }
+        ].slice(0, take || 20)
+        return Promise.resolve(activities)
+      },
+      
+      create: ({ data }: any) => {
+        const activity = {
+          id: 'activity-' + Date.now(),
+          createdAt: new Date(),
+          ...data
+        }
+        return Promise.resolve(activity)
+      }
+    }
+    
+    systemMetrics = {
+      findMany: () => {
+        return Promise.resolve([
+          { metricType: 'page_views', value: 15640, date: new Date() },
+          { metricType: 'conversion_rate', value: 3.2, date: new Date() },
+          { metricType: 'avg_session_time', value: 272, date: new Date() }
+        ])
+      }
     }
   }
   

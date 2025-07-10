@@ -11,7 +11,26 @@
       
       <nav class="flex items-center space-x-4">
         <ThemeToggle />
+        <LanguageSelector v-if="i18nEnabled" />
         <template v-if="user">
+          <!-- Admin/Moderator Links -->
+          <div v-if="canAccessAdminPanel(user.role)" class="flex items-center space-x-2">
+            <NuxtLink 
+              to="/admin"
+              class="px-3 py-1 bg-red-600 hover:bg-red-700 text-white text-xs rounded-full font-bold transition-colors duration-200"
+            >
+              🛡️ {{ $t('nav.admin') }}
+            </NuxtLink>
+          </div>
+          <div v-else-if="canAccessModeratorPanel(user.role)" class="flex items-center space-x-2">
+            <NuxtLink 
+              to="/moderator"
+              class="px-3 py-1 bg-yellow-600 hover:bg-yellow-700 text-white text-xs rounded-full font-bold transition-colors duration-200"
+            >
+              🛡️ {{ $t('nav.moderator') }}
+            </NuxtLink>
+          </div>
+          
           <div class="flex items-center space-x-3">
             <NuxtLink to="/profile" class="hover:text-blue-200">
               <div class="w-8 h-8 rounded-full overflow-hidden bg-blue-100 flex items-center justify-center">
@@ -45,10 +64,10 @@
         </template>
         <template v-else>
           <NuxtLink to="/auth/signin" class="hover:text-blue-200">
-            Sign In
+            {{ $t('nav.signin') }}
           </NuxtLink>
           <NuxtLink to="/auth/signup" class="bg-blue-700 hover:bg-blue-800 px-3 py-1 rounded">
-            Sign Up
+            {{ $t('nav.signup') }}
           </NuxtLink>
         </template>
       </nav>
@@ -58,6 +77,9 @@
 
 <script setup>
 const user = ref(null)
+const runtimeConfig = useRuntimeConfig()
+const i18nEnabled = runtimeConfig.public.i18nEnabled !== false
+const { t: $t } = useTranslation()
 
 const checkAuth = () => {
   if (typeof window !== 'undefined') {
@@ -87,6 +109,14 @@ const getDonatorStatus = () => {
 const getPremiumStatus = () => {
   if (!user.value?.subscription) return false
   return user.value.subscription.tier === 'PREMIUM'
+}
+
+const canAccessAdminPanel = (userRole) => {
+  return userRole === 'ADMIN'
+}
+
+const canAccessModeratorPanel = (userRole) => {
+  return userRole === 'MODERATOR' || userRole === 'ADMIN'
 }
 
 const refreshUserData = async () => {

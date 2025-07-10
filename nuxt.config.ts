@@ -6,7 +6,8 @@ export default defineNuxtConfig({
   
   modules: [
     '@sidebase/nuxt-auth',
-    '@nuxtjs/tailwindcss'
+    '@nuxtjs/tailwindcss',
+    ...(process.env.I18N_ENABLED !== 'false' ? ['@nuxtjs/i18n'] : [])
   ],
   
   tailwindcss: {
@@ -28,10 +29,15 @@ export default defineNuxtConfig({
     jwtSecret: process.env.JWT_SECRET || process.env.NUXT_AUTH_SECRET || 'fallback-jwt-secret',
     databaseUrl: process.env.DATABASE_URL,
     authOrigin: process.env.AUTH_ORIGIN || process.env.NUXT_AUTH_URL,
+    plausibleApiKey: process.env.PLAUSIBLE_API_KEY,
     
     // Public keys (exposed to client-side)
     public: {
-      authUrl: process.env.NUXT_AUTH_URL || 'http://localhost:3000'
+      authUrl: process.env.NUXT_AUTH_URL || 'http://localhost:3000',
+      i18nEnabled: process.env.I18N_ENABLED !== 'false',
+      siteUrl: process.env.SITE_URL || 'localhost:3000',
+      posthogKey: process.env.POSTHOG_KEY,
+      posthogHost: process.env.POSTHOG_HOST
     }
   },
   
@@ -65,6 +71,31 @@ export default defineNuxtConfig({
   },
   
   
+  // i18n configuration
+  i18n: process.env.I18N_ENABLED !== 'false' ? {
+    locales: [
+      {
+        code: 'en',
+        iso: 'en-US',
+        name: 'English',
+        file: 'en.json'
+      },
+      {
+        code: 'et',
+        iso: 'et-EE', 
+        name: 'Eesti',
+        file: 'et.json'
+      }
+    ],
+    defaultLocale: 'en',
+    strategy: 'no_prefix',
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'i18n_locale',
+      redirectOn: 'no prefix'
+    }
+  } : {},
+
   // App configuration
   app: {
     head: {

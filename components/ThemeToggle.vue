@@ -6,8 +6,9 @@
   >
     <!-- Toggle slider -->
     <div 
-      class="absolute w-5 h-5 bg-white dark:bg-gray-300 rounded-full shadow-md transform transition-all duration-300 flex items-center justify-center"
+      class="absolute left-0.5 w-5 h-5 bg-white dark:bg-gray-300 rounded-full shadow-md transform transition-all duration-300 flex items-center justify-center"
       :class="isDark ? 'translate-x-6' : 'translate-x-0'"
+      :style="isDark ? { transform: 'translateX(22px)' } : {}"
     >
       <!-- Sun icon (light mode) -->
       <svg

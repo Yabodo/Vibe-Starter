@@ -32,10 +32,19 @@ export default defineEventHandler(async (event) => {
     })
 
     if (!subscription) {
-      throw createError({
-        statusCode: 404,
-        statusMessage: 'Subscription not found'
-      })
+      // Return default free subscription when user has no subscription
+      return {
+        subscription: {
+          id: null,
+          userId: decoded.userId,
+          status: 'inactive',
+          tier: 'FREE',
+          startDate: null,
+          endDate: null,
+          createdAt: null,
+          updatedAt: null
+        }
+      }
     }
 
     return {

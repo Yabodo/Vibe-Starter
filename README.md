@@ -14,10 +14,12 @@ A comprehensive, production-ready boilerplate for building modern web applicatio
 
 ### 🔐 **Complete Authentication System**
 - **User Registration & Login** - Secure JWT-based authentication
+- **3-Tier Role System** - USER, MODERATOR, and ADMIN roles with granular permissions
 - **Two-Factor Authentication (2FA)** - TOTP with QR codes and backup codes
 - **Password Management** - Secure password hashing with bcrypt
 - **Auto-redirect Logic** - Smart redirects for authenticated users
 - **Session Management** - Persistent login with secure token handling
+- **Role-Based Access Control** - Middleware and UI restrictions based on user roles
 
 ### 👤 **User Profile Management**
 - **Profile Editing** - Update name, email, and profile information
@@ -35,17 +37,29 @@ A comprehensive, production-ready boilerplate for building modern web applicatio
 
 ### 🎨 **Modern UI/UX**
 - **Dark/Light Mode** - System preference detection with toggle
+- **Internationalization (i18n)** - Multi-language support with English and Estonian
 - **Responsive Design** - Mobile-first approach with Tailwind CSS
 - **Smooth Animations** - Polished transitions and interactions
 - **Accessibility** - WCAG compliant with proper ARIA labels
 - **Component Library** - Reusable, consistent components
 
-### 🛡️ **Security & Best Practices**
+### 🛡️ **Admin & Moderation System**
+- **Admin Dashboard** - Complete system overview with analytics and user management
+- **User Management** - Search, filter, edit, and manage all user accounts
+- **Production Analytics** - Database-native analytics with Analytics.js, real conversion tracking, bounce rates
+- **Role Management** - Assign and modify user roles (USER, MODERATOR, ADMIN)
+- **Activity Monitoring** - Track user actions and system events with detailed logging
+- **Moderator Tools** - Content moderation, user reports, and limited administration
+- **Real-time Metrics** - Live statistics and performance monitoring from database
+- **Export Functionality** - User data export and comprehensive reporting tools
+
+### 🔒 **Security & Best Practices**
 - **Input Validation** - Server and client-side validation
 - **CSRF Protection** - Cross-site request forgery prevention
 - **Rate Limiting** - Built-in API rate limiting
 - **Secure Headers** - Security headers configuration
 - **Environment Variables** - Secure configuration management
+- **Role-Based Authorization** - Granular permissions system
 
 ### 🎓 **Noob-Friendly Features**
 - **Zero Configuration** - Works out of the box, no complex setup
@@ -133,6 +147,10 @@ DATABASE_URL="file:./prisma/dev.db"
 
 # Development Settings
 NODE_ENV=development
+
+# Analytics Configuration (Optional)
+MIXPANEL_TOKEN=your-mixpanel-token-here
+POSTHOG_KEY=your-posthog-key-here
 ```
 
 ### 4. Database Setup
@@ -226,6 +244,8 @@ Want to show your app to the world? Let's deploy it to Vercel (free hosting)!
    | `NUXT_AUTH_SECRET` | Generate another secret (32+ characters) |
    | `NUXT_AUTH_URL` | `https://your-project-name.vercel.app` (your actual Vercel URL) |
    | `NODE_ENV` | `production` |
+   | `MIXPANEL_TOKEN` | (Optional) Your Mixpanel project token for analytics |
+   | `POSTHOG_KEY` | (Optional) Your PostHog API key for analytics |
 
 #### Step 4: Set Up Database Schema
 
@@ -347,22 +367,44 @@ Want to show your app to the world? Let's deploy it to Vercel (free hosting)!
 📦 your-app/
 ├── 📁 components/           # Reusable Vue components
 │   ├── AppHeader.vue       # Navigation bar with auth
+│   ├── LanguageSelector.vue # Language switcher
 │   ├── ThemeToggle.vue     # Dark/light mode toggle
 │   └── SparkleEffect.vue   # Animation components
 ├── 📁 composables/         # Vue composables
+│   ├── useI18n.ts          # Translation management
 │   └── useTheme.ts         # Theme management logic
+├── 📁 i18n/                # Internationalization
+│   ├── i18n.config.ts      # i18n runtime configuration
+│   └── locales/            # Translation files
+│       ├── en.json         # English translations
+│       └── et.json         # Estonian translations
+├── 📁 layouts/             # Page layouts
+│   ├── admin.vue           # Admin dashboard layout
+│   ├── moderator.vue       # Moderator dashboard layout
+│   └── default.vue         # Default application layout
 ├── 📁 middleware/          # Route middleware
-│   └── auth.ts             # Authentication guard
+│   ├── auth.ts             # Authentication guard
+│   ├── admin.ts            # Admin-only access control
+│   └── moderator.ts        # Moderator+ access control
 ├── 📁 pages/               # File-based routing
 │   ├── index.vue           # Landing page
 │   ├── dashboard.vue       # User dashboard
 │   ├── profile.vue         # User profile settings
 │   ├── subscription.vue    # Subscription management
+│   ├── admin/              # Admin panel pages
+│   │   ├── index.vue       # Admin dashboard
+│   │   ├── analytics.vue   # System analytics
+│   │   └── users/
+│   │       └── index.vue   # User management
+│   ├── moderator/          # Moderator panel pages
+│   │   └── index.vue       # Moderator dashboard
 │   ├── auth/
 │   │   ├── signin.vue      # Login page
 │   │   └── signup.vue      # Registration page
-│   └── security/
-│       └── 2fa-setup.vue   # Two-factor auth setup
+│   ├── security/
+│   │   └── 2fa-setup.vue   # Two-factor auth setup
+│   └── dev/
+│       └── create-admin.vue # Admin user creation (dev only)
 ├── 📁 server/              # Server-side API
 │   └── api/
 │       ├── auth/           # Authentication endpoints
@@ -371,21 +413,30 @@ Want to show your app to the world? Let's deploy it to Vercel (free hosting)!
 │       │       ├── setup.post.ts
 │       │       ├── verify.post.ts
 │       │       └── disable.post.ts
+│       ├── admin/          # Admin-only endpoints
+│       │   ├── analytics.get.ts
+│       │   └── users/
+│       │       ├── index.get.ts
+│       │       └── [id].put.ts
 │       ├── users/          # User management
 │       │   ├── profile.get.ts
 │       │   ├── profile.put.ts
 │       │   ├── profile.delete.ts
 │       │   ├── register.post.ts
 │       │   └── upload-avatar.post.ts
-│       └── subscriptions/  # Subscription management
-│           ├── index.get.ts
-│           ├── upgrade.post.ts
-│           └── cancel.post.ts
+│       ├── subscriptions/  # Subscription management
+│       │   ├── index.get.ts
+│       │   ├── upgrade.post.ts
+│       │   └── cancel.post.ts
+│       └── dev/            # Development utilities
+│           └── seed-admin.post.ts
 ├── 📁 prisma/              # Database configuration
 │   ├── schema.prisma       # Database schema
 │   ├── dev.db              # SQLite database (development)
 │   └── migrations/         # Database migrations
 ├── 📁 utils/               # Utility functions
+│   ├── db.ts               # Database client with mock support
+│   ├── roles.ts            # Role management utilities
 │   └── twoFactor.ts        # 2FA utilities
 ├── 📁 public/              # Static assets
 │   └── uploads/            # User uploaded files
@@ -393,6 +444,130 @@ Want to show your app to the world? Let's deploy it to Vercel (free hosting)!
 ├── tailwind.config.js      # Tailwind CSS config
 └── package.json            # Dependencies
 ```
+
+## 🌐 Internationalization (i18n)
+
+### Features
+- **Multi-language Support** - English (default) and Estonian translations
+- **Environment Toggle** - Enable/disable i18n via environment variable
+- **Persistent Language Choice** - Language selection saved across sessions
+- **Clean URLs** - No URL prefixes, SEO-friendly approach
+- **Fallback System** - Works even when i18n is disabled
+
+### Setup and Configuration
+
+**Enable i18n (default):**
+```env
+I18N_ENABLED=true
+```
+
+**Disable i18n:**
+```env
+I18N_ENABLED=false
+```
+
+### Using Translations in Components
+
+```vue
+<template>
+  <div>
+    <!-- Use translation keys -->
+    <h1>{{ t('home.title') }}</h1>
+    <p>{{ t('home.subtitle') }}</p>
+    
+    <!-- Language selector (only shows when i18n enabled) -->
+    <LanguageSelector v-if="enabled" />
+  </div>
+</template>
+
+<script setup>
+const { t, enabled } = useTranslation()
+</script>
+```
+
+### Translation Files
+
+**English (`/i18n/locales/en.json`)**
+```json
+{
+  "home": {
+    "title": "Welcome to Vibe Starter",
+    "subtitle": "Your comprehensive user and subscription management platform"
+  },
+  "auth": {
+    "signin": {
+      "title": "Sign In",
+      "email": "Email"
+    }
+  }
+}
+```
+
+**Estonian (`/i18n/locales/et.json`)**
+```json
+{
+  "home": {
+    "title": "Tere tulemast Vibe Starterisse",
+    "subtitle": "Teie täielik kasutaja- ja tellimushalduse platvorm"
+  },
+  "auth": {
+    "signin": {
+      "title": "Logi sisse",
+      "email": "E-post"
+    }
+  }
+}
+```
+
+### How to Disable i18n
+
+If your project doesn't need multi-language support:
+
+1. **Set environment variable:**
+   ```env
+   I18N_ENABLED=false
+   ```
+
+2. **Remove language selector from components:**
+   ```vue
+   <!-- Remove or comment out -->
+   <!-- <LanguageSelector /> -->
+   ```
+
+3. **Translations still work!** The fallback system ensures your app works normally with English text.
+
+### Adding New Languages
+
+1. **Create translation file:**
+   ```bash
+   # Example for Spanish
+   touch i18n/locales/es.json
+   ```
+
+2. **Add translations:**
+   ```json
+   {
+     "home": {
+       "title": "Bienvenido a Vibe Starter"
+     }
+   }
+   ```
+
+3. **Update language selector:**
+   ```vue
+   <!-- components/LanguageSelector.vue -->
+   <option value="es">Español</option>
+   ```
+
+4. **Update fallback composable** if needed:
+   ```typescript
+   // composables/useI18n.ts
+   const availableLocales = [
+     { code: 'en', name: 'English' },
+     { code: 'et', name: 'Eesti' },
+     { code: 'es', name: 'Español' }
+   ]
+   ```
 
 ## 🔧 Configuration
 
@@ -406,6 +581,34 @@ DATABASE_URL="file:./prisma/dev.db"
 **Production (PostgreSQL)**
 ```env
 DATABASE_URL="postgresql://username:password@localhost:5432/mydb"
+```
+
+### Internationalization Configuration
+
+**Enable i18n (default):**
+```env
+I18N_ENABLED=true
+```
+
+**Disable i18n:**
+```env
+I18N_ENABLED=false
+```
+
+**Nuxt i18n configuration:**
+```typescript
+// nuxt.config.ts
+export default defineNuxtConfig({
+  modules: [
+    process.env.I18N_ENABLED !== 'false' ? '@nuxtjs/i18n' : null
+  ].filter(Boolean),
+  
+  i18n: process.env.I18N_ENABLED !== 'false' ? {
+    locales: ['en', 'et'],
+    defaultLocale: 'en',
+    strategy: 'no_prefix'
+  } : undefined
+})
 ```
 
 **Update schema after changes:**
@@ -468,6 +671,81 @@ module.exports = {
     <!-- Your content -->
   </div>
 </template>
+```
+
+## 🛡️ 3-Tier Role System
+
+Vibe Starter includes a comprehensive role-based access control system with three user tiers:
+
+### User Roles
+
+| Role | Permissions | Access |
+|------|-------------|--------|
+| **👤 USER** | Standard user features | Profile, subscription, dashboard |
+| **🛡️ MODERATOR** | Content moderation + user features | User management, reports, moderation tools |
+| **🔴 ADMIN** | Full system access | Everything + analytics, system settings |
+
+### Role-Based Features
+
+**🔴 Admin Capabilities:**
+- Complete user management (create, edit, delete, role assignment)
+- Advanced analytics dashboard with system metrics
+- User activity monitoring and audit trails
+- System-wide configuration and settings
+- Access to all moderator functions
+- Export functionality and reporting tools
+
+**🟡 Moderator Capabilities:**
+- User report management and resolution
+- Content moderation and review tools
+- Limited user account management
+- User activity monitoring (scoped)
+- Quick moderation actions
+
+**🟢 User Capabilities:**
+- Profile management and settings
+- Subscription management
+- 2FA setup and security features
+- Account data export and deletion
+
+### Testing Admin/Moderator Features
+
+**Development Mode (Mock Database):**
+
+1. **Create Admin User:**
+   ```bash
+   # Visit in browser
+   http://localhost:3000/dev/create-admin
+   ```
+
+2. **Login Credentials:**
+   ```
+   Admin: admin@example.com / admin123
+   Moderator: moderator@example.com / mod123
+   ```
+
+3. **Access Admin Panel:**
+   ```
+   Admin Dashboard: /admin
+   Moderator Dashboard: /moderator
+   ```
+
+**Production Setup:**
+- Create admin users through database seeding
+- Use role management API endpoints
+- Implement proper user invitation system
+
+### Role Management API
+
+```typescript
+// Update user role (Admin only)
+PUT /api/admin/users/:id
+{
+  "role": "MODERATOR" // USER, MODERATOR, ADMIN
+}
+
+// Get users with role filtering
+GET /api/admin/users?role=MODERATOR&status=active
 ```
 
 ### Adding New Pages
@@ -559,10 +837,12 @@ model User {
   email        String   @unique
   name         String?
   password     String
-  role         String   @default("USER")
+  role         String   @default("USER") // USER, MODERATOR, ADMIN
   profileImage String?
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
+  lastLoginAt  DateTime?
+  isActive     Boolean  @default(true)
   
   // 2FA fields
   twoFactorEnabled Boolean @default(false)
@@ -572,6 +852,7 @@ model User {
   subscription Subscription?
   sessions     Session[]
   accounts     Account[]
+  activities   UserActivity[]
 }
 
 model Subscription {
@@ -585,6 +866,33 @@ model Subscription {
   updatedAt DateTime @updatedAt
   
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model UserActivity {
+  id        String   @id @default(cuid())
+  userId    String
+  action    String   // login, logout, profile_update, subscription_change, etc.
+  details   String?  // JSON string with additional data
+  ipAddress String?
+  userAgent String?
+  createdAt DateTime @default(now())
+  
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@index([userId])
+  @@index([action])
+  @@index([createdAt])
+}
+
+model SystemMetrics {
+  id          String   @id @default(cuid())
+  metricType  String   // daily_active_users, new_registrations, etc.
+  value       Float
+  date        DateTime @default(now())
+  metadata    String?  // JSON string with additional data
+  
+  @@index([metricType])
+  @@index([date])
 }
 ```
 
@@ -618,6 +926,7 @@ NUXT_AUTH_SECRET=your-production-auth-secret
 NUXT_AUTH_URL=https://your-domain.com
 DATABASE_URL=your-production-database-url
 NODE_ENV=production
+I18N_ENABLED=true
 ```
 
 ## 🧪 Testing

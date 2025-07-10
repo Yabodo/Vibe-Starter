@@ -1,11 +1,11 @@
 <template>
   <div class="text-center">
     <h1 class="text-4xl font-bold text-gray-800 dark:text-gray-100 mb-6 transition-colors duration-300">
-      Welcome to Vibe Starter
+      {{ $t('home.title') }}
     </h1>
     
     <p class="text-xl text-gray-600 dark:text-gray-300 mb-8 transition-colors duration-300">
-      Your comprehensive user and subscription management platform
+      {{ $t('home.subtitle') }}
     </p>
     
     <div v-if="!data?.user" class="space-x-4">
@@ -13,14 +13,14 @@
         to="/auth/signup"
         class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg text-lg font-semibold"
       >
-        Get Started
+        {{ $t('home.getStarted') }}
       </NuxtLink>
       
       <NuxtLink 
         to="/auth/signin"
         class="bg-gray-200 hover:bg-gray-300 text-gray-800 px-6 py-3 rounded-lg text-lg font-semibold"
       >
-        Sign In
+        {{ $t('nav.signin') }}
       </NuxtLink>
     </div>
     
@@ -29,24 +29,24 @@
         to="/dashboard"
         class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg text-lg font-semibold"
       >
-        Go to Dashboard
+        {{ $t('home.goDashboard') }}
       </NuxtLink>
     </div>
     
     <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
       <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md transition-colors duration-300">
-        <h3 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-100">User Management</h3>
-        <p class="text-gray-600 dark:text-gray-300">Complete user authentication and profile management system</p>
+        <h3 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-100">{{ $t('home.features.userManagement.title') }}</h3>
+        <p class="text-gray-600 dark:text-gray-300">{{ $t('home.features.userManagement.description') }}</p>
       </div>
       
       <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md transition-colors duration-300">
-        <h3 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-100">Subscription Tiers</h3>
-        <p class="text-gray-600 dark:text-gray-300">Premium and Donator plans with beautiful UI</p>
+        <h3 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-100">{{ $t('home.features.subscriptionTiers.title') }}</h3>
+        <p class="text-gray-600 dark:text-gray-300">{{ $t('home.features.subscriptionTiers.description') }}</p>
       </div>
       
       <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md transition-colors duration-300">
-        <h3 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-100">Secure & Scalable</h3>
-        <p class="text-gray-600 dark:text-gray-300">Built with modern security practices and scalable architecture</p>
+        <h3 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-100">{{ $t('home.features.secureScalable.title') }}</h3>
+        <p class="text-gray-600 dark:text-gray-300">{{ $t('home.features.secureScalable.description') }}</p>
       </div>
     </div>
   </div>
@@ -54,6 +54,7 @@
 
 <script setup>
 const { data } = useAuth()
+const { t: $t } = useTranslation()
 
 const checkAuthAndRedirect = () => {
   if (typeof window !== 'undefined') {

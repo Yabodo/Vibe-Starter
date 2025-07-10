@@ -1,0 +1,432 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "cancel": "Cancel",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "back": "Back",
+    "next": "Next",
+    "yes": "Yes",
+    "no": "No"
+  },
+  "nav": {
+    "home": "Home",
+    "dashboard": "Dashboard",
+    "profile": "Profile",
+    "subscription": "Subscription",
+    "signin": "Sign In",
+    "signup": "Sign Up",
+    "signout": "Sign Out",
+    "admin": "Admin",
+    "moderator": "Moderator"
+  },
+  "home": {
+    "title": "Welcome to Vibe Starter",
+    "subtitle": "Your comprehensive user and subscription management platform",
+    "getStarted": "Get Started",
+    "goDashboard": "Go to Dashboard",
+    "features": {
+      "userManagement": {
+        "title": "User Management",
+        "description": "Complete user authentication and profile management system"
+      },
+      "subscriptionTiers": {
+        "title": "Subscription Tiers",
+        "description": "Premium and Donator plans with beautiful UI"
+      },
+      "secureScalable": {
+        "title": "Secure & Scalable",
+        "description": "Built with modern security practices and scalable architecture"
+      }
+    }
+  },
+  "auth": {
+    "signin": {
+      "title": "Sign In",
+      "email": "Email",
+      "password": "Password",
+      "twoFactorCode": "Two-Factor Authentication Code",
+      "twoFactorPlaceholder": "Enter 6-digit code",
+      "backupCodePlaceholder": "Enter backup code",
+      "useBackupCode": "Use backup code",
+      "useAuthenticatorApp": "Use authenticator app",
+      "twoFactorDescription": "Enter the code from your authenticator app",
+      "backupCodeDescription": "Enter one of your backup codes",
+      "verifying": "Verifying...",
+      "verifySignIn": "Verify & Sign In",
+      "signIn": "Sign In",
+      "noAccount": "Don't have an account?",
+      "signUp": "Sign up"
+    },
+    "signup": {
+      "title": "Sign Up",
+      "name": "Name",
+      "nameOptional": "Name (Optional)",
+      "email": "Email",
+      "password": "Password",
+      "confirmPassword": "Confirm Password",
+      "creating": "Creating Account...",
+      "createAccount": "Sign Up",
+      "hasAccount": "Already have an account?",
+      "signIn": "Sign in",
+      "passwordsNotMatch": "Passwords do not match",
+      "accountCreated": "Account created successfully! Redirecting to sign in...",
+      "errorOccurred": "An error occurred. Please try again."
+    }
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "subtitle": "Manage your account and subscription",
+    "accountInfo": {
+      "title": "Account Information",
+      "name": "Name",
+      "email": "Email",
+      "role": "Role",
+      "memberSince": "Member since",
+      "notProvided": "Not provided",
+      "editProfile": "Edit Profile"
+    },
+    "subscription": {
+      "title": "Subscription",
+      "plan": "Plan",
+      "status": "Status",
+      "expires": "Expires",
+      "manageSubscription": "Manage Subscription"
+    },
+    "errors": {
+      "loadUserData": "Failed to load user data"
+    }
+  },
+  "profile": {
+    "title": "User Profile",
+    "subtitle": "Manage your personal information and account settings",
+    "loading": "Loading profile...",
+    "personalInfo": "Personal Information",
+    "security": "Security",
+    "twoFactorAuth": "Two-Factor Authentication",
+    "avatar": "Avatar",
+    "changeAvatar": "Change Avatar",
+    "updateProfile": "Update Profile",
+    "updating": "Updating...",
+    "changePassword": "Change Password",
+    "currentPassword": "Current Password",
+    "newPassword": "New Password",
+    "confirmNewPassword": "Confirm New Password",
+    "passwordMinLength": "Password must be at least 6 characters long",
+    "changing": "Changing...",
+    "twoFactorEnabled": "2FA Enabled",
+    "twoFactorProtected": "Your account is protected with two-factor authentication",
+    "disable2FA": "Disable 2FA",
+    "enable2FA": "Enable Two-Factor Authentication",
+    "enable2FADescription": "Add an extra layer of security to your account",
+    "setup2FA": "Set Up 2FA",
+    "backupCodes": "Backup Codes",
+    "backupCodesDescription": "If you lose access to your authenticator app, you can use backup codes to sign in.",
+    "generateBackupCodes": "Generate New Backup Codes",
+    "generating": "Generating...",
+    "benefits2FA": "Benefits of 2FA:",
+    "benefit1": "Protects your account even if your password is compromised",
+    "benefit2": "Uses time-based codes from your phone's authenticator app",
+    "benefit3": "Industry standard security practice",
+    "benefit4": "Includes backup codes for emergency access",
+    "accountActions": "Account Actions",
+    "signOut": "Sign Out",
+    "signOutDescription": "Sign out of your account on this device",
+    "downloadData": "Download Account Data",
+    "downloadDataDescription": "Export all your account information and data",
+    "preparing": "Preparing...",
+    "download": "Download",
+    "deleteAccount": "Delete Account",
+    "deleteAccountDescription": "Permanently delete your account and all associated data",
+    "accountSummary": "Account Summary",
+    "fullName": "Full Name",
+    "fullNamePlaceholder": "Enter your full name",
+    "emailAddress": "Email Address",
+    "accountType": "Account Type",
+    "memberSince": "Member Since",
+    "subscription": "Subscription",
+    "manageSubscription": "Manage Subscription",
+    "recentActivity": "Recent Activity",
+    "profileViewed": "Profile viewed",
+    "justNow": "Just now",
+    "accountCreated": "Account created",
+    "confirmDisable2FA": "Disable Two-Factor Authentication",
+    "disable2FAWarning": "Enter your password to confirm disabling 2FA. This will make your account less secure.",
+    "disabling": "Disabling...",
+    "confirmDeleteAccount": "Confirm Account Deletion",
+    "deleteWarning": "This action cannot be undone. All your data will be permanently deleted.",
+    "profileUpdated": "Profile updated successfully!",
+    "passwordChanged": "Password changed successfully!",
+    "passwordsNotMatch": "Passwords do not match",
+    "dataDownloaded": "Account data downloaded successfully!",
+    "accountDeleted": "Account deleted successfully",
+    "signedOut": "You have been signed out successfully",
+    "twoFactorDisabled": "2FA has been disabled successfully",
+    "backupCodesGenerated": "New backup codes generated and downloaded",
+    "fileSizeError": "File size must be less than 5MB",
+    "fileTypeError": "Please select a valid image file (JPEG, PNG, or WebP)",
+    "profilePictureUpdated": "Profile picture updated successfully!",
+    "failedUpload": "Failed to upload profile picture",
+    "failedUpdate": "Failed to update profile",
+    "failedPasswordChange": "Failed to change password",
+    "failedDownload": "Failed to download account data",
+    "failedDelete": "Failed to delete account",
+    "failedDisable2FA": "Failed to disable 2FA",
+    "failedBackupCodes": "Failed to regenerate backup codes",
+    "failedLoadProfile": "Failed to load profile data"
+  },
+  "subscription": {
+    "title": "Choose Your Plan",
+    "subtitle": "Unlock premium features or support our mission",
+    "guarantee": "No hidden fees • Cancel anytime • 30-day money back guarantee",
+    "currentlyOn": "Currently on {plan} plan",
+    "currentPlan": "Current Plan",
+    "upgrade": "Upgrade",
+    "cancel": "Cancel",
+    "processing": "Processing...",
+    "mostPopular": "🚀 MOST POPULAR",
+    "charityHero": "💝 CHARITY HERO",
+    "premium": {
+      "title": "Premium",
+      "price": "$4.99",
+      "period": "/month",
+      "description": "Full access to everything we offer",
+      "feature1": "Complete access to all features",
+      "feature2": "Priority customer support", 
+      "feature3": "Advanced analytics & insights",
+      "feature4": "API access & integrations",
+      "feature5": "Early access to new features",
+      "button": "Get Premium",
+      "currentPlan": "✅ Your Current Plan"
+    },
+    "donator": {
+      "title": "Donator",
+      "price": "$19.99",
+      "period": "/month",
+      "description": "Support our mission + Premium access",
+      "impact": "You're Making a Difference!",
+      "impactDescription": "Your donation helps us continue building amazing features for everyone",
+      "feature1": "Everything in Premium",
+      "feature2": "Special \"Donator\" badge & recognition",
+      "feature3": "Special thanks in our credits",
+      "feature4": "Direct line to our development team",
+      "button": "💝 Become a Donator",
+      "currentPlan": "💖 Thank you for your support!"
+    },
+    "free": {
+      "title": "Not ready to subscribe?",
+      "description": "You can still use our basic features for free. Upgrade anytime to unlock premium functionality.",
+      "current": "🆓 Currently using free features"
+    },
+    "management": {
+      "title": "Subscription Management",
+      "description": "You can cancel your subscription at any time. You'll continue to have access until the end of your billing period.",
+      "cancelButton": "Cancel Subscription"
+    },
+    "messages": {
+      "donatorSuccess": "🎉 Thank you for becoming a Donator! Your support means the world to us! 💝",
+      "upgradeSuccess": "Successfully upgraded to {plan} plan!",
+      "cancelSuccess": "Subscription cancelled successfully",
+      "cancelConfirm": "Are you sure you want to cancel your subscription?",
+      "upgradeError": "Failed to upgrade subscription",
+      "cancelError": "Failed to cancel subscription"
+    },
+    "plans": {
+      "basic": "Basic",
+      "premium": "Premium", 
+      "donator": "Donator"
+    },
+    "status": {
+      "active": "Active",
+      "cancelled": "Cancelled",
+      "expired": "Expired"
+    }
+  },
+  "security": {
+    "twoFactorSetup": "Set Up Two-Factor Authentication",
+    "setupDescription": "Add an extra layer of security to your account with 2FA",
+    "settingUp": "Setting up 2FA...",
+    "setupComplete": "Setup Complete",
+    "step1": "Install an Authenticator App",
+    "step1Description": "Download and install an authenticator app on your phone:",
+    "googleAuth": "Google Authenticator",
+    "authy": "Authy",
+    "twoFAS": "2FAS Auth",
+    "onePassword": "1Password",
+    "iosAndroid": "iOS & Android",
+    "step2": "Scan QR Code",
+    "step2Description": "Open your authenticator app and scan this QR code:",
+    "cantScan": "Can't scan?",
+    "manualEntry": "Manual entry",
+    "secretKey": "Secret key:",
+    "copyKey": "Copy key",
+    "keyCopied": "Key copied to clipboard!",
+    "step3": "Verify Setup",
+    "step3Description": "Enter the 6-digit code from your authenticator app:",
+    "verificationCode": "Verification Code",
+    "verificationPlaceholder": "Enter 6-digit code",
+    "verify": "Verify & Complete Setup",
+    "verifying": "Verifying...",
+    "backupCodes": "Backup Codes",
+    "backupCodesDescription": "Save these backup codes in a secure location. Each code can only be used once.",
+    "saveBackupCodes": "Save these backup codes in a secure location",
+    "downloadCodes": "Download Backup Codes",
+    "finish": "Finish Setup",
+    "setupSuccess": "🎉 Two-Factor Authentication has been set up successfully!",
+    "backToProfile": "Back to Profile",
+    "errors": {
+      "setupFailed": "Failed to set up 2FA",
+      "verificationFailed": "Verification failed. Please check your code and try again.",
+      "invalidCode": "Invalid verification code"
+    }
+  },
+  "admin": {
+    "dashboard": {
+      "title": "Admin Dashboard",
+      "subtitle": "Manage users, analytics, and system settings"
+    },
+    "nav": {
+      "dashboard": "Dashboard",
+      "users": "Users",
+      "analytics": "Analytics",
+      "settings": "Settings",
+      "backToApp": "Back to App",
+      "profile": "Profile",
+      "signOut": "Sign Out"
+    },
+    "stats": {
+      "totalUsers": "Total Users",
+      "activeUsers": "Active Users",
+      "premiumUsers": "Premium Users",
+      "monthlyRevenue": "Monthly Revenue"
+    },
+    "userManagement": {
+      "title": "User Management",
+      "viewAll": "View All",
+      "newToday": "New Today",
+      "pendingApproval": "Pending Approval",
+      "reported": "Reported"
+    },
+    "analytics": {
+      "title": "Analytics",
+      "subtitle": "System performance and user insights",
+      "viewFull": "View Full Analytics",
+      "pageViews": "Page Views Today",
+      "conversionRate": "Conversion Rate",
+      "avgSessionTime": "Avg Session Time",
+      "timePeriod": "Time Period",
+      "periods": {
+        "last24h": "Last 24 Hours",
+        "last7d": "Last 7 Days",
+        "last30d": "Last 30 Days",
+        "last90d": "Last 90 Days"
+      },
+      "metrics": {
+        "userGrowth": "User Growth",
+        "revenue": "Revenue",
+        "conversionRate": "Conversion Rate",
+        "churnRate": "Churn Rate"
+      },
+      "charts": {
+        "userActivity": "User Activity",
+        "revenue": "Revenue Trends"
+      },
+      "chartPlaceholder": "Chart will be displayed here",
+      "topPages": {
+        "title": "Top Pages"
+      },
+      "acquisition": {
+        "title": "User Acquisition"
+      },
+      "views": "views"
+    },
+    "recentActivity": {
+      "title": "Recent Activity"
+    },
+    "users": {
+      "title": "User Management",
+      "subtitle": "Manage user accounts, roles, and permissions",
+      "export": "Export Users",
+      "exporting": "Exporting...",
+      "createUser": "Create User",
+      "search": "Search",
+      "searchPlaceholder": "Search by name or email...",
+      "filterByRole": "Filter by Role",
+      "filterByStatus": "Filter by Status",
+      "allRoles": "All Roles",
+      "allStatuses": "All Statuses",
+      "userList": "User List",
+      "table": {
+        "user": "User",
+        "role": "Role",
+        "status": "Status",
+        "lastLogin": "Last Login",
+        "subscription": "Subscription",
+        "actions": "Actions"
+      },
+      "roles": {
+        "user": "User",
+        "moderator": "Moderator",
+        "admin": "Administrator"
+      },
+      "status": {
+        "active": "Active",
+        "inactive": "Inactive",
+        "banned": "Banned"
+      },
+      "noName": "No Name",
+      "noSubscription": "Free",
+      "never": "Never",
+      "edit": "Edit",
+      "delete": "Delete",
+      "previous": "Previous",
+      "next": "Next",
+      "showingResults": "Showing {start} to {end} of {total} results"
+    }
+  },
+  "moderator": {
+    "dashboard": {
+      "title": "Moderator Dashboard",
+      "subtitle": "Manage user reports and content moderation"
+    },
+    "nav": {
+      "dashboard": "Dashboard",
+      "users": "Users",
+      "reports": "Reports",
+      "content": "Content",
+      "backToApp": "Back to App",
+      "adminPanel": "Admin Panel",
+      "profile": "Profile",
+      "signOut": "Sign Out"
+    },
+    "stats": {
+      "pendingReports": "Pending Reports",
+      "bannedUsers": "Banned Users",
+      "resolvedToday": "Resolved Today",
+      "activeUsers": "Active Users"
+    },
+    "reports": {
+      "title": "Pending Reports",
+      "viewAll": "View All",
+      "reportedBy": "Reported by",
+      "approve": "Approve",
+      "reject": "Reject"
+    },
+    "activity": {
+      "title": "Recent Activity",
+      "viewAll": "View All"
+    },
+    "quickActions": {
+      "title": "Quick Actions",
+      "manageUsers": "Manage Users",
+      "manageUsersDesc": "View and moderate user accounts",
+      "reviewReports": "Review Reports",
+      "reviewReportsDesc": "Process user reports and violations",
+      "moderateContent": "Moderate Content",
+      "moderateContentDesc": "Review flagged content and posts"
+    }
+  }
+}

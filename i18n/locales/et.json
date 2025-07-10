@@ -1,0 +1,432 @@
+{
+  "common": {
+    "loading": "Laadimine...",
+    "error": "Viga",
+    "success": "Õnnestus",
+    "cancel": "Tühista",
+    "save": "Salvesta",
+    "edit": "Muuda",
+    "delete": "Kustuta",
+    "back": "Tagasi",
+    "next": "Edasi",
+    "yes": "Jah",
+    "no": "Ei"
+  },
+  "nav": {
+    "home": "Avaleht",
+    "dashboard": "Juhtpaan",
+    "profile": "Profiil",
+    "subscription": "Tellimus",
+    "signin": "Logi sisse",
+    "signup": "Registreeru",
+    "signout": "Logi välja",
+    "admin": "Admin",
+    "moderator": "Moderaator"
+  },
+  "home": {
+    "title": "Tere tulemast Vibe Starterisse",
+    "subtitle": "Teie täielik kasutaja- ja tellimushalduse platvorm",
+    "getStarted": "Alusta",
+    "goDashboard": "Mine juhtpaneeli",
+    "features": {
+      "userManagement": {
+        "title": "Kasutajahaldus",
+        "description": "Täielik kasutaja autentimise ja profiilihalduse süsteem"
+      },
+      "subscriptionTiers": {
+        "title": "Tellimuste tasemed",
+        "description": "Premium ja Donator plaanid kaunite kasutajaliidestega"
+      },
+      "secureScalable": {
+        "title": "Turvaline ja skaleeruv",
+        "description": "Ehitatud kaasaegsete turvapraktikatega ja skaleeruva arhitektuuriga"
+      }
+    }
+  },
+  "auth": {
+    "signin": {
+      "title": "Logi sisse",
+      "email": "E-post",
+      "password": "Parool",
+      "twoFactorCode": "Kahefaktoriline autentimiskood",
+      "twoFactorPlaceholder": "Sisesta 6-kohaline kood",
+      "backupCodePlaceholder": "Sisesta varukood",
+      "useBackupCode": "Kasuta varukoodi",
+      "useAuthenticatorApp": "Kasuta autentimisrakendust",
+      "twoFactorDescription": "Sisesta kood oma autentimisrakendusest",
+      "backupCodeDescription": "Sisesta üks oma varukoodidest",
+      "verifying": "Kontrollin...",
+      "verifySignIn": "Kontrolli ja logi sisse",
+      "signIn": "Logi sisse",
+      "noAccount": "Pole kontot?",
+      "signUp": "Registreeru"
+    },
+    "signup": {
+      "title": "Registreeru",
+      "name": "Nimi",
+      "nameOptional": "Nimi (Valikuline)",
+      "email": "E-post",
+      "password": "Parool",
+      "confirmPassword": "Kinnita parool",
+      "creating": "Loon kontot...",
+      "createAccount": "Registreeru",
+      "hasAccount": "Juba on konto?",
+      "signIn": "Logi sisse",
+      "passwordsNotMatch": "Paroolid ei kattu",
+      "accountCreated": "Konto edukalt loodud! Suunan sisselogimise lehele...",
+      "errorOccurred": "Esines viga. Palun proovi uuesti."
+    }
+  },
+  "dashboard": {
+    "title": "Juhtpaan",
+    "subtitle": "Halda oma kontot ja tellimust",
+    "accountInfo": {
+      "title": "Konto informatsioon",
+      "name": "Nimi",
+      "email": "E-post",
+      "role": "Roll",
+      "memberSince": "Liige alates",
+      "notProvided": "Pole esitatud",
+      "editProfile": "Muuda profiili"
+    },
+    "subscription": {
+      "title": "Tellimus",
+      "plan": "Plaan",
+      "status": "Olek",
+      "expires": "Aegub",
+      "manageSubscription": "Halda tellimust"
+    },
+    "errors": {
+      "loadUserData": "Kasutaja andmete laadimine ebaõnnestus"
+    }
+  },
+  "profile": {
+    "title": "Kasutaja profiil",
+    "subtitle": "Halda oma isikuandmeid ja konto seadeid",
+    "loading": "Laadimine profiili...",
+    "personalInfo": "Isikuandmed",
+    "security": "Turvalisus",
+    "twoFactorAuth": "Kahefaktoriline autentimine",
+    "avatar": "Avatar",
+    "changeAvatar": "Muuda avatari",
+    "updateProfile": "Uuenda profiili",
+    "updating": "Uuendan...",
+    "changePassword": "Muuda parooli",
+    "currentPassword": "Praegune parool",
+    "newPassword": "Uus parool",
+    "confirmNewPassword": "Kinnita uus parool",
+    "passwordMinLength": "Parool peab olema vähemalt 6 tähemärki pikk",
+    "changing": "Muudan...",
+    "twoFactorEnabled": "2FA lubatud",
+    "twoFactorProtected": "Teie konto on kaitstud kahefaktorilise autentimisega",
+    "disable2FA": "Keela 2FA",
+    "enable2FA": "Luba kahefaktoriline autentimine",
+    "enable2FADescription": "Lisa oma kontole lisa turvakiht",
+    "setup2FA": "Seadista 2FA",
+    "backupCodes": "Varukoodid",
+    "backupCodesDescription": "Kui kaotad ligipääsu autentimisrakendusele, saad varukoodidega sisse logida.",
+    "generateBackupCodes": "Genereeri uued varukoodid",
+    "generating": "Genererin...",
+    "benefits2FA": "2FA eelised:",
+    "benefit1": "Kaitseb kontot isegi kui parool on kompromiteeritud",
+    "benefit2": "Kasutab ajapõhiseid koode telefoni autentimisrakendusest",
+    "benefit3": "Tööstuse standardne turvapraktika",
+    "benefit4": "Sisaldab varukoode hädaolukorras ligipääsuks",
+    "accountActions": "Konto tegevused",
+    "signOut": "Logi välja",
+    "signOutDescription": "Logi selles seadmes kontost välja",
+    "downloadData": "Laadi alla konto andmed",
+    "downloadDataDescription": "Ekspordi kõik oma konto andmed ja info",
+    "preparing": "Valmistan ette...",
+    "download": "Laadi alla",
+    "deleteAccount": "Kustuta konto",
+    "deleteAccountDescription": "Kustuta püsivalt oma konto ja kõik seotud andmed",
+    "accountSummary": "Konto kokkuvõte",
+    "fullName": "Täisnimi",
+    "fullNamePlaceholder": "Sisesta oma täisnimi",
+    "emailAddress": "E-posti aadress",
+    "accountType": "Konto tüüp",
+    "memberSince": "Liige alates",
+    "subscription": "Tellimus",
+    "manageSubscription": "Halda tellimust",
+    "recentActivity": "Hiljutine tegevus",
+    "profileViewed": "Profiili vaadatud",
+    "justNow": "Just praegu",
+    "accountCreated": "Konto loodud",
+    "confirmDisable2FA": "Keela kahefaktoriline autentimine",
+    "disable2FAWarning": "Sisesta parool 2FA keelamiseks. See muudab konto vähem turvaliseks.",
+    "disabling": "Keelan...",
+    "confirmDeleteAccount": "Kinnita konto kustutamine",
+    "deleteWarning": "Seda tegevust ei saa tagasi võtta. Kõik andmed kustutatakse püsivalt.",
+    "profileUpdated": "Profiil edukalt uuendatud!",
+    "passwordChanged": "Parool edukalt muudetud!",
+    "passwordsNotMatch": "Paroolid ei kattu",
+    "dataDownloaded": "Konto andmed edukalt alla laaditud!",
+    "accountDeleted": "Konto edukalt kustutatud",
+    "signedOut": "Oled edukalt välja logitud",
+    "twoFactorDisabled": "2FA on edukalt keelatud",
+    "backupCodesGenerated": "Uued varukoodid genereeritud ja alla laaditud",
+    "fileSizeError": "Faili suurus peab olema väiksem kui 5MB",
+    "fileTypeError": "Palun vali kehtiv pildifail (JPEG, PNG või WebP)",
+    "profilePictureUpdated": "Profiilipilt edukalt uuendatud!",
+    "failedUpload": "Profiilipildi üleslaadimine ebaõnnestus",
+    "failedUpdate": "Profiili uuendamine ebaõnnestus",
+    "failedPasswordChange": "Parooli muutmine ebaõnnestus",
+    "failedDownload": "Andmete allalaadimine ebaõnnestus",
+    "failedDelete": "Konto kustutamine ebaõnnestus",
+    "failedDisable2FA": "2FA keelamine ebaõnnestus",
+    "failedBackupCodes": "Varukoodide taastamine ebaõnnestus",
+    "failedLoadProfile": "Profiili andmete laadimine ebaõnnestus"
+  },
+  "subscription": {
+    "title": "Vali oma plaan",
+    "subtitle": "Ava premium funktsioonid või toeta meie missiooni",
+    "guarantee": "Peidetud tasusid pole • Tühista igal ajal • 30-päevane raha tagastamise garantii",
+    "currentlyOn": "Praegu {plan} plaanis",
+    "currentPlan": "Praegune plaan",
+    "upgrade": "Uuenda",
+    "cancel": "Tühista",
+    "processing": "Töötlen...",
+    "mostPopular": "🚀 KÕIGE POPULAARSEM",
+    "charityHero": "💝 HEATEGEVUSE KANGELANE",
+    "premium": {
+      "title": "Premium",
+      "price": "4,99 €",
+      "period": "/kuus",
+      "description": "Täielik ligipääs kõigele mida pakume",
+      "feature1": "Täielik ligipääs kõikidele funktsioonidele",
+      "feature2": "Esmajärjekorra klienditugi",
+      "feature3": "Täiustatud analüütika ja ülevaated",
+      "feature4": "API ligipääs ja integratsioonid",
+      "feature5": "Varajane ligipääs uutele funktsioonidele",
+      "button": "Hangi Premium",
+      "currentPlan": "✅ Sinu praegune plaan"
+    },
+    "donator": {
+      "title": "Annetaja",
+      "price": "19,99 €",
+      "period": "/kuus",
+      "description": "Toeta meie missiooni + Premium ligipääs",
+      "impact": "Sa teed vahet!",
+      "impactDescription": "Sinu annetus aitab meil jätkata suurepäraste funktsioonide ehitamist kõigile",
+      "feature1": "Kõik Premium võimalused",
+      "feature2": "Eriline \"Annetaja\" märk ja tunnustus",
+      "feature3": "Eriline tänu meie krediitides",
+      "feature4": "Otsene ühendus meie arendusmeeskonnaga",
+      "button": "💝 Saa annetajaks",
+      "currentPlan": "💖 Täname toetuse eest!"
+    },
+    "free": {
+      "title": "Pole valmis tellimaks?",
+      "description": "Saad endiselt kasutada meie põhifunktsioone tasuta. Uuenda igal ajal premium funktsioonide avamiseks.",
+      "current": "🆓 Praegu kasutad tasuta funktsioone"
+    },
+    "management": {
+      "title": "Tellimuse haldus",
+      "description": "Saad tellimuse igal ajal tühistada. Sul on ligipääs arveldustsükli lõpuni.",
+      "cancelButton": "Tühista tellimus"
+    },
+    "messages": {
+      "donatorSuccess": "🎉 Täname, et said annetajaks! Sinu toetus tähendab meile maailma! 💝",
+      "upgradeSuccess": "Edukalt uuendatud {plan} plaanile!",
+      "cancelSuccess": "Tellimus edukalt tühistatud",
+      "cancelConfirm": "Kas oled kindel, et tahad tellimuse tühistada?",
+      "upgradeError": "Tellimuse uuendamine ebaõnnestus",
+      "cancelError": "Tellimuse tühistamine ebaõnnestus"
+    },
+    "plans": {
+      "basic": "Põhiline",
+      "premium": "Premium",
+      "donator": "Annetaja"
+    },
+    "status": {
+      "active": "Aktiivne",
+      "cancelled": "Tühistatud",
+      "expired": "Aegunud"
+    }
+  },
+  "security": {
+    "twoFactorSetup": "Seadista kahefaktoriline autentimine",
+    "setupDescription": "Lisa oma kontole lisa turvakiht 2FA-ga",
+    "settingUp": "Seadistan 2FA-d...",
+    "setupComplete": "Seadistamine valmis",
+    "step1": "Installi autentimisrakendus",
+    "step1Description": "Laadi alla ja installi autentimisrakendus oma telefoni:",
+    "googleAuth": "Google Authenticator",
+    "authy": "Authy",
+    "twoFAS": "2FAS Auth",
+    "onePassword": "1Password",
+    "iosAndroid": "iOS ja Android",
+    "step2": "Skaneeri QR kood",
+    "step2Description": "Ava autentimisrakendus ja skaneeri see QR kood:",
+    "cantScan": "Ei saa skaneerida?",
+    "manualEntry": "Käsitsi sisestamine",
+    "secretKey": "Salavõti:",
+    "copyKey": "Kopeeri võti",
+    "keyCopied": "Võti kopeeritud lõikelauale!",
+    "step3": "Kinnita seadistus",
+    "step3Description": "Sisesta 6-kohaline kood oma autentimisrakendusest:",
+    "verificationCode": "Kinnituskood",
+    "verificationPlaceholder": "Sisesta 6-kohaline kood",
+    "verify": "Kinnita ja lõpeta seadistus",
+    "verifying": "Kontrollin...",
+    "backupCodes": "Varukoodid",
+    "backupCodesDescription": "Salvesta need varukoodid turvalisse kohta. Iga koodi saab kasutada ainult üks kord.",
+    "saveBackupCodes": "Salvesta need varukoodid turvalisse kohta",
+    "downloadCodes": "Laadi alla varukoodid",
+    "finish": "Lõpeta seadistus",
+    "setupSuccess": "🎉 Kahefaktoriline autentimine on edukalt seadistatud!",
+    "backToProfile": "Tagasi profiili",
+    "errors": {
+      "setupFailed": "2FA seadistamine ebaõnnestus",
+      "verificationFailed": "Kinnitamine ebaõnnestus. Palun kontrolli koodi ja proovi uuesti.",
+      "invalidCode": "Kehtetu kinnituskood"
+    }
+  },
+  "admin": {
+    "dashboard": {
+      "title": "Admini juhtpaan",
+      "subtitle": "Halda kasutajaid, analüütikat ja süsteemi seadeid"
+    },
+    "nav": {
+      "dashboard": "Juhtpaan",
+      "users": "Kasutajad",
+      "analytics": "Analüütika",
+      "settings": "Seaded",
+      "backToApp": "Tagasi rakendusse",
+      "profile": "Profiil",
+      "signOut": "Logi välja"
+    },
+    "stats": {
+      "totalUsers": "Kasutajaid kokku",
+      "activeUsers": "Aktiivseid kasutajaid",
+      "premiumUsers": "Premium kasutajaid",
+      "monthlyRevenue": "Kuine käive"
+    },
+    "userManagement": {
+      "title": "Kasutajahaldus",
+      "viewAll": "Vaata kõiki",
+      "newToday": "Uusi täna",
+      "pendingApproval": "Ootab kinnitust",
+      "reported": "Kaebatud"
+    },
+    "analytics": {
+      "title": "Analüütika",
+      "subtitle": "Süsteemi jõudlus ja kasutaja ülevaated",
+      "viewFull": "Vaata täielikku analüütikat",
+      "pageViews": "Lehe vaatamisi täna",
+      "conversionRate": "Konversioonimäär",
+      "avgSessionTime": "Keskmine seansi aeg",
+      "timePeriod": "Ajaperiood",
+      "periods": {
+        "last24h": "Viimased 24 tundi",
+        "last7d": "Viimased 7 päeva",
+        "last30d": "Viimased 30 päeva",
+        "last90d": "Viimased 90 päeva"
+      },
+      "metrics": {
+        "userGrowth": "Kasutajate kasv",
+        "revenue": "Käive",
+        "conversionRate": "Konversioonimäär",
+        "churnRate": "Lahkumismäär"
+      },
+      "charts": {
+        "userActivity": "Kasutaja aktiivsus",
+        "revenue": "Käibe suundumused"
+      },
+      "chartPlaceholder": "Diagramm kuvatakse siin",
+      "topPages": {
+        "title": "Populaarsemad lehed"
+      },
+      "acquisition": {
+        "title": "Kasutajate hankimine"
+      },
+      "views": "vaatamist"
+    },
+    "recentActivity": {
+      "title": "Hiljutine tegevus"
+    },
+    "users": {
+      "title": "Kasutajahaldus",
+      "subtitle": "Halda kasutaja kontosid, rolle ja õiguseid",
+      "export": "Ekspordi kasutajad",
+      "exporting": "Ekspordin...",
+      "createUser": "Loo kasutaja",
+      "search": "Otsi",
+      "searchPlaceholder": "Otsi nime või e-posti järgi...",
+      "filterByRole": "Filtreeri rolli järgi",
+      "filterByStatus": "Filtreeri staatuse järgi",
+      "allRoles": "Kõik rollid",
+      "allStatuses": "Kõik staatused",
+      "userList": "Kasutajate nimekiri",
+      "table": {
+        "user": "Kasutaja",
+        "role": "Roll",
+        "status": "Staatus",
+        "lastLogin": "Viimane sisselogimine",
+        "subscription": "Tellimus",
+        "actions": "Tegevused"
+      },
+      "roles": {
+        "user": "Kasutaja",
+        "moderator": "Moderaator",
+        "admin": "Administraator"
+      },
+      "status": {
+        "active": "Aktiivne",
+        "inactive": "Mitteaktiivne",
+        "banned": "Keelatud"
+      },
+      "noName": "Nimi puudub",
+      "noSubscription": "Tasuta",
+      "never": "Mitte kunagi",
+      "edit": "Muuda",
+      "delete": "Kustuta",
+      "previous": "Eelmine",
+      "next": "Järgmine",
+      "showingResults": "Näitan {start} kuni {end} {total}-st tulemusest"
+    }
+  },
+  "moderator": {
+    "dashboard": {
+      "title": "Moderaatori juhtpaan",
+      "subtitle": "Halda kasutajate kaebusi ja sisu modereerimist"
+    },
+    "nav": {
+      "dashboard": "Juhtpaan",
+      "users": "Kasutajad",
+      "reports": "Kaebused",
+      "content": "Sisu",
+      "backToApp": "Tagasi rakendusse",
+      "adminPanel": "Admini paneel",
+      "profile": "Profiil",
+      "signOut": "Logi välja"
+    },
+    "stats": {
+      "pendingReports": "Ootel kaebused",
+      "bannedUsers": "Keelatud kasutajad",
+      "resolvedToday": "Lahendatud täna",
+      "activeUsers": "Aktiivsed kasutajad"
+    },
+    "reports": {
+      "title": "Ootel kaebused",
+      "viewAll": "Vaata kõiki",
+      "reportedBy": "Kaebas",
+      "approve": "Kinnita",
+      "reject": "Lükka tagasi"
+    },
+    "activity": {
+      "title": "Hiljutine tegevus",
+      "viewAll": "Vaata kõiki"
+    },
+    "quickActions": {
+      "title": "Kiired tegevused",
+      "manageUsers": "Halda kasutajaid",
+      "manageUsersDesc": "Vaata ja modereeri kasutaja kontosid",
+      "reviewReports": "Vaata kaebusi",
+      "reviewReportsDesc": "Töötle kasutajate kaebusi ja rikkumisi",
+      "moderateContent": "Modereeri sisu",
+      "moderateContentDesc": "Vaata üle märgistatud sisu ja postitused"
+    }
+  }
+}
