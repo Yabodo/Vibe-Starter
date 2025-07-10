@@ -7,7 +7,8 @@
       "Bash(npx prisma:*)",
       "Bash(mkdir:*)",
       "Bash(node:*)",
-      "Bash(mv:*)"
+      "Bash(mv:*)",
+      "Bash(git add:*)"
     ],
     "deny": []
   }
