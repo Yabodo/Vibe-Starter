@@ -5,10 +5,7 @@ export default defineNuxtConfig({
   
   // Vercel deployment configuration
   nitro: {
-    preset: 'vercel-edge',
-    experimental: {
-      wasm: true
-    }
+    preset: 'vercel'
   },
   
   modules: [
