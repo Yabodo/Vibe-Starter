@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(rm:*)",
+      "Bash(npm cache clean:*)",
+      "Bash(npx prisma:*)",
+      "Bash(mkdir:*)"
+    ],
+    "deny": []
+  }
+}
