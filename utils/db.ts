@@ -1,6 +1,5 @@
-// Smart database client selection
-let PrismaClient: any
-let prisma: any
+// Import PrismaClient - this should work in both environments
+import { PrismaClient } from '@prisma/client'
 
 // Check if we should use mock (development with no real DB)
 const shouldUseMock = 
@@ -13,6 +12,8 @@ const shouldUseMock =
 declare global {
   var __prisma: any | undefined
 }
+
+let prisma: any
 
 if (shouldUseMock) {
   console.log('🎭 Using Mock Database for Development')
@@ -129,33 +130,23 @@ if (shouldUseMock) {
 } else {
   console.log('🗄️ Using Real Database Connection')
   
-  // Dynamically import PrismaClient to avoid bundling issues
-  try {
-    const { PrismaClient: Client } = require('@prisma/client')
-    PrismaClient = Client
-    
-    // Check if we have a valid database URL
-    const isDatabaseAvailable = () => {
-      const dbUrl = process.env.DATABASE_URL
-      return dbUrl && dbUrl !== 'postgresql://placeholder:placeholder@placeholder:5432/placeholder'
-    }
+  // Check if we have a valid database URL
+  const isDatabaseAvailable = () => {
+    const dbUrl = process.env.DATABASE_URL
+    return dbUrl && dbUrl !== 'postgresql://placeholder:placeholder@placeholder:5432/placeholder'
+  }
 
-    if (process.env.NODE_ENV === 'production') {
-      // In production, always create a new instance
-      prisma = new PrismaClient()
-    } else {
-      // In development, use global variable to prevent multiple instances
-      if (!global.__prisma && isDatabaseAvailable()) {
-        global.__prisma = new PrismaClient({
-          log: ['query', 'error', 'warn'],
-        })
-      }
-      prisma = global.__prisma || new PrismaClient()
+  if (process.env.NODE_ENV === 'production') {
+    // In production, always create a new instance
+    prisma = new PrismaClient()
+  } else {
+    // In development, use global variable to prevent multiple instances
+    if (!global.__prisma && isDatabaseAvailable()) {
+      global.__prisma = new PrismaClient({
+        log: ['query', 'error', 'warn'],
+      })
     }
-    
-  } catch (error) {
-    console.error('Failed to initialize real Prisma client:', error)
-    throw error
+    prisma = global.__prisma || new PrismaClient()
   }
 }
 
