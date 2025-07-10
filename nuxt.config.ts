@@ -16,7 +16,7 @@ export default defineNuxtConfig({
   },
   
   auth: {
-    baseURL: process.env.AUTH_ORIGIN,
+    baseURL: process.env.AUTH_ORIGIN || process.env.NUXT_AUTH_URL,
     provider: {
       type: 'authjs'
     }
@@ -27,6 +27,7 @@ export default defineNuxtConfig({
     authSecret: process.env.NUXT_AUTH_SECRET || 'fallback-auth-secret',
     jwtSecret: process.env.JWT_SECRET || process.env.NUXT_AUTH_SECRET || 'fallback-jwt-secret',
     databaseUrl: process.env.DATABASE_URL,
+    authOrigin: process.env.AUTH_ORIGIN || process.env.NUXT_AUTH_URL,
     
     // Public keys (exposed to client-side)
     public: {
