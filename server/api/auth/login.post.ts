@@ -7,7 +7,10 @@ export default defineEventHandler(async (event) => {
   
   const { email, password, twoFactorToken } = body
 
+  console.log('Login attempt for email:', email)
+
   if (!email || !password) {
+    console.log('Missing email or password')
     throw createError({
       statusCode: 400,
       statusMessage: 'Email and password are required'
@@ -32,7 +35,10 @@ export default defineEventHandler(async (event) => {
       }
     })
 
+    console.log('User found:', !!user)
+
     if (!user) {
+      console.log('User not found for email:', email)
       throw createError({
         statusCode: 401,
         statusMessage: 'Invalid credentials'
@@ -40,8 +46,10 @@ export default defineEventHandler(async (event) => {
     }
 
     const isPasswordValid = await bcrypt.compare(password, user.password)
+    console.log('Password valid:', isPasswordValid)
 
     if (!isPasswordValid) {
+      console.log('Invalid password for user:', email)
       throw createError({
         statusCode: 401,
         statusMessage: 'Invalid credentials'
@@ -107,6 +115,7 @@ export default defineEventHandler(async (event) => {
       }
     }
   } catch (error) {
+    console.error('Login error:', error)
     if (error.statusCode) {
       throw error
     }
