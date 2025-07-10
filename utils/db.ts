@@ -1,48 +1,13 @@
-// Try importing PrismaClient, fallback to mock if it fails
-let PrismaClient: any
-
-try {
-  const { PrismaClient: Client } = require('@prisma/client')
-  PrismaClient = Client
-} catch (error) {
-  console.warn('Prisma Client not available, using mock:', error.message)
-  // Mock PrismaClient for environments where it's not available
-  PrismaClient = class MockPrismaClient {
-    constructor() {
-      console.warn('Using mock Prisma client')
-    }
-    async $connect() { return Promise.resolve() }
-    async $disconnect() { return Promise.resolve() }
-    user = {
-      findUnique: () => Promise.resolve(null),
-      findMany: () => Promise.resolve([]),
-      create: () => Promise.resolve({}),
-      update: () => Promise.resolve({}),
-      delete: () => Promise.resolve({})
-    }
-    subscription = {
-      findUnique: () => Promise.resolve(null),
-      create: () => Promise.resolve({}),
-      update: () => Promise.resolve({}),
-      delete: () => Promise.resolve({})
-    }
-    account = {
-      findUnique: () => Promise.resolve(null),
-      findMany: () => Promise.resolve([]),
-      create: () => Promise.resolve({}),
-      update: () => Promise.resolve({}),
-      delete: () => Promise.resolve({})
-    }
-  }
-}
+// Import PrismaClient directly
+import { PrismaClient } from '@prisma/client'
 
 // Global variable to hold the Prisma client instance
 declare global {
-  var __prisma: any | undefined
+  var __prisma: PrismaClient | undefined
 }
 
 // Create a single instance of Prisma client
-let prisma: any
+let prisma: PrismaClient
 
 // Check if we have a valid database URL
 const isDatabaseAvailable = () => {
