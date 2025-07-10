@@ -40,7 +40,7 @@ export default defineNuxtConfig({
   
   // Build configuration for Vercel
   build: {
-    transpile: process.env.NODE_ENV === 'production' ? ['@prisma/client'] : []
+    transpile: []
   },
   
   // Vite configuration for Prisma compatibility
@@ -49,16 +49,19 @@ export default defineNuxtConfig({
       global: 'globalThis'
     },
     optimizeDeps: {
-      exclude: process.env.NODE_ENV === 'production' ? [] : ['@prisma/client']
+      exclude: ['@prisma/client', '.prisma/client']
     }
   },
   
   // Nitro configuration for serverless
   nitro: {
     preset: 'vercel',
-    externals: process.env.NODE_ENV === 'production' ? {
-      inline: ['@prisma/client']
-    } : {}
+    experimental: {
+      wasm: true
+    },
+    rollupConfig: {
+      external: ['.prisma/client', '@prisma/engines']
+    }
   },
   
   

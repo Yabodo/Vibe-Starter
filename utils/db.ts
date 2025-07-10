@@ -1,6 +1,3 @@
-// Import PrismaClient - this should work in both environments
-import { PrismaClient } from '@prisma/client'
-
 // Check if we should use mock (development with no real DB)
 const shouldUseMock = 
   process.env.NODE_ENV === 'development' && 
@@ -130,23 +127,113 @@ if (shouldUseMock) {
 } else {
   console.log('🗄️ Using Real Database Connection')
   
-  // Check if we have a valid database URL
-  const isDatabaseAvailable = () => {
-    const dbUrl = process.env.DATABASE_URL
-    return dbUrl && dbUrl !== 'postgresql://placeholder:placeholder@placeholder:5432/placeholder'
-  }
-
-  if (process.env.NODE_ENV === 'production') {
-    // In production, always create a new instance
-    prisma = new PrismaClient()
-  } else {
-    // In development, use global variable to prevent multiple instances
-    if (!global.__prisma && isDatabaseAvailable()) {
-      global.__prisma = new PrismaClient({
-        log: ['query', 'error', 'warn'],
-      })
+  // Lazy-load PrismaClient to avoid bundling issues
+  let PrismaClient: any = null
+  let clientInstance: any = null
+  
+  const getPrismaClient = async () => {
+    if (!PrismaClient) {
+      try {
+        const prismaModule = await import('@prisma/client')
+        PrismaClient = prismaModule.PrismaClient
+      } catch (error) {
+        console.error('Failed to import Prisma Client:', error)
+        throw error
+      }
     }
-    prisma = global.__prisma || new PrismaClient()
+    
+    if (!clientInstance) {
+      // Check if we have a valid database URL
+      const isDatabaseAvailable = () => {
+        const dbUrl = process.env.DATABASE_URL
+        return dbUrl && dbUrl !== 'postgresql://placeholder:placeholder@placeholder:5432/placeholder'
+      }
+
+      if (process.env.NODE_ENV === 'production') {
+        // In production, always create a new instance
+        clientInstance = new PrismaClient()
+      } else {
+        // In development, use global variable to prevent multiple instances
+        if (!global.__prisma && isDatabaseAvailable()) {
+          global.__prisma = new PrismaClient({
+            log: ['query', 'error', 'warn'],
+          })
+        }
+        clientInstance = global.__prisma || new PrismaClient()
+      }
+    }
+    
+    return clientInstance
+  }
+  
+  // Create a proxy object that lazy-loads the real client
+  prisma = {
+    user: {
+      findUnique: async (...args: any[]) => {
+        const client = await getPrismaClient()
+        return client.user.findUnique(...args)
+      },
+      create: async (...args: any[]) => {
+        const client = await getPrismaClient()
+        return client.user.create(...args)
+      },
+      update: async (...args: any[]) => {
+        const client = await getPrismaClient()
+        return client.user.update(...args)
+      },
+      delete: async (...args: any[]) => {
+        const client = await getPrismaClient()
+        return client.user.delete(...args)
+      }
+    },
+    subscription: {
+      findUnique: async (...args: any[]) => {
+        const client = await getPrismaClient()
+        return client.subscription.findUnique(...args)
+      },
+      create: async (...args: any[]) => {
+        const client = await getPrismaClient()
+        return client.subscription.create(...args)
+      },
+      update: async (...args: any[]) => {
+        const client = await getPrismaClient()
+        return client.subscription.update(...args)
+      },
+      delete: async (...args: any[]) => {
+        const client = await getPrismaClient()
+        return client.subscription.delete(...args)
+      }
+    },
+    account: {
+      findUnique: async (...args: any[]) => {
+        const client = await getPrismaClient()
+        return client.account.findUnique(...args)
+      },
+      findMany: async (...args: any[]) => {
+        const client = await getPrismaClient()
+        return client.account.findMany(...args)
+      },
+      create: async (...args: any[]) => {
+        const client = await getPrismaClient()
+        return client.account.create(...args)
+      },
+      update: async (...args: any[]) => {
+        const client = await getPrismaClient()
+        return client.account.update(...args)
+      },
+      delete: async (...args: any[]) => {
+        const client = await getPrismaClient()
+        return client.account.delete(...args)
+      }
+    },
+    $connect: async () => {
+      const client = await getPrismaClient()
+      return client.$connect()
+    },
+    $disconnect: async () => {
+      const client = await getPrismaClient()
+      return client.$disconnect()
+    }
   }
 }
 
