@@ -18,7 +18,7 @@ export interface TwoFactorVerification {
  */
 export async function generateTwoFactorSetup(
   userEmail: string,
-  appName: string = 'VibeApp'
+  appName: string = 'Vibe Starter'
 ): Promise<TwoFactorSetup> {
   // Generate a secret key
   const secret = authenticator.generateSecret()

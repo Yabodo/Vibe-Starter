@@ -1,10 +1,8 @@
-import { PrismaClient } from '@prisma/client'
+import { prisma } from '~/utils/db'
 import jwt from 'jsonwebtoken'
 import { writeFile, mkdir } from 'fs/promises'
 import { existsSync } from 'fs'
 import path from 'path'
-
-const prisma = new PrismaClient()
 
 export default defineEventHandler(async (event) => {
   const authHeader = getHeader(event, 'authorization')

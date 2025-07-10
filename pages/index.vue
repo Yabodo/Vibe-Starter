@@ -1,7 +1,7 @@
 <template>
   <div class="text-center">
     <h1 class="text-4xl font-bold text-gray-800 dark:text-gray-100 mb-6 transition-colors duration-300">
-      Welcome to MyApp
+      Welcome to Vibe Starter
     </h1>
     
     <p class="text-xl text-gray-600 dark:text-gray-300 mb-8 transition-colors duration-300">

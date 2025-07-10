@@ -1,5 +1,6 @@
-# 🚀 Modern User Management & Subscription Boilerplate
+# 🚀 Vibe Starter
 
+**Modern User Management & Subscription Boilerplate**  
 **Nuxt 3 + Prisma + TypeScript + Tailwind CSS**
 
 A comprehensive, production-ready boilerplate for building modern web applications with user authentication, subscription management, and two-factor authentication. Built with the latest technologies and best practices.
@@ -58,8 +59,8 @@ Before you begin, ensure you have the following installed:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/user-management-boilerplate.git
-cd user-management-boilerplate
+git clone https://github.com/yourusername/vibe-starter.git
+cd vibe-starter
 ```
 
 ### 2. Install Dependencies
@@ -118,7 +119,7 @@ npm run dev
 yarn dev
 ```
 
-🎉 **Your app is now running at [http://localhost:3000](http://localhost:3000)**
+🎉 **Vibe Starter is now running at [http://localhost:3000](http://localhost:3000)**
 
 ## 📚 Complete Tutorial
 
@@ -574,7 +575,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Built with ❤️ for developers who want to ship fast**
 
-*Get your user management system up and running in minutes, not hours.*
+*Get your user management system up and running in minutes, not hours with Vibe Starter.*
 
 ## 🔗 Links
 

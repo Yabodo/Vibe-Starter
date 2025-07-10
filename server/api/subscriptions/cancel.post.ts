@@ -1,7 +1,5 @@
-import { PrismaClient } from '@prisma/client'
+import { prisma } from '~/utils/db'
 import jwt from 'jsonwebtoken'
-
-const prisma = new PrismaClient()
 
 export default defineEventHandler(async (event) => {
   const authHeader = getHeader(event, 'authorization')

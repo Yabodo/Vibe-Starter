@@ -1,10 +1,8 @@
 import CredentialsProvider from '@auth/core/providers/credentials'
 import { PrismaAdapter } from "@auth/prisma-adapter"
-import { PrismaClient } from "@prisma/client"
+import { prisma } from '~/utils/db'
 import bcrypt from 'bcryptjs'
 import { NuxtAuthHandler } from '#auth'
-
-const prisma = new PrismaClient()
 
 export default NuxtAuthHandler({
   secret: useRuntimeConfig().authSecret,

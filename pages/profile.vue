@@ -757,7 +757,7 @@ const regenerateBackupCodes = async () => {
     // Download new backup codes
     const codesText = response.data.backupCodes.join('\n')
     const blob = new Blob([
-      `VibeApp 2FA Backup Codes (Regenerated)\n` +
+      `Vibe Starter 2FA Backup Codes (Regenerated)\n` +
       `Generated: ${new Date().toLocaleString()}\n\n` +
       `Important: Keep these codes safe and secure.\n` +
       `Each code can only be used once.\n\n` +
@@ -767,7 +767,7 @@ const regenerateBackupCodes = async () => {
     const url = URL.createObjectURL(blob)
     const link = document.createElement('a')
     link.href = url
-    link.download = `vibeapp-2fa-backup-codes-${new Date().toISOString().split('T')[0]}.txt`
+    link.download = `vibe-starter-2fa-backup-codes-${new Date().toISOString().split('T')[0]}.txt`
     link.click()
     URL.revokeObjectURL(url)
     

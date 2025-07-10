@@ -1,7 +1,5 @@
-import { PrismaClient } from '@prisma/client'
+import { prisma } from '~/utils/db'
 import jwt from 'jsonwebtoken'
-
-const prisma = new PrismaClient()
 
 const SUBSCRIPTION_TIERS = ['PREMIUM', 'DONATOR']
 const TIER_PRICES = {

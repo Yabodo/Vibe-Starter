@@ -1,8 +1,6 @@
-import { PrismaClient } from '@prisma/client'
+import { prisma } from '~/utils/db'
 import jwt from 'jsonwebtoken'
 import { generateTwoFactorSetup } from '~/utils/twoFactor'
-
-const prisma = new PrismaClient()
 
 export default defineEventHandler(async (event) => {
   try {

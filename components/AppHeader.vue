@@ -4,7 +4,7 @@
       <div class="flex items-center">
         <h1 class="text-xl font-bold">
           <NuxtLink :to="user ? '/dashboard' : '/'" class="hover:text-blue-200">
-            MyApp
+            Vibe Starter
           </NuxtLink>
         </h1>
       </div>
