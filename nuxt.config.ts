@@ -3,10 +3,6 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-05-15',
   devtools: { enabled: process.env.NODE_ENV === 'development' },
   
-  // Vercel deployment configuration
-  nitro: {
-    preset: 'vercel'
-  },
   
   modules: [
     '@sidebase/nuxt-auth',
@@ -28,8 +24,8 @@ export default defineNuxtConfig({
   
   runtimeConfig: {
     // Private keys (only available on server-side)
-    authSecret: process.env.NUXT_AUTH_SECRET,
-    jwtSecret: process.env.JWT_SECRET,
+    authSecret: process.env.NUXT_AUTH_SECRET || 'fallback-auth-secret',
+    jwtSecret: process.env.JWT_SECRET || process.env.NUXT_AUTH_SECRET || 'fallback-jwt-secret',
     databaseUrl: process.env.DATABASE_URL,
     
     // Public keys (exposed to client-side)
@@ -44,6 +40,18 @@ export default defineNuxtConfig({
   // Build configuration for Vercel
   build: {
     transpile: ['@prisma/client']
+  },
+  
+  // Vite configuration for Prisma compatibility
+  vite: {
+    define: {
+      global: 'globalThis'
+    }
+  },
+  
+  // Nitro configuration for serverless
+  nitro: {
+    preset: 'vercel'
   },
   
   
