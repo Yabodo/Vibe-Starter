@@ -9,11 +9,11 @@ The production 500 errors were caused by database provider mismatch. Here's how 
 1. **Set Environment Variables in Vercel Dashboard:**
    ```
    DATABASE_PROVIDER=postgresql
-   DATABASE_URL=postgres://neondb_owner:npg_wu8zM1WSBrIO@ep-flat-surf-a2zj3swy-pooler.eu-central-1.aws.neon.tech/neondb?sslmode=require
-   RESEND_API_KEY=re_CJtRxZye_QCoZc5p4LEd8GacuCTKo62LD
-   EMAIL_FROM=noreply@synctuition.ee
-   NUXT_AUTH_SECRET=wer5tyuiookjhgfdefvbnmkju65rfvbnji876t5r43edfvghjui876t54re3wsxcfghuio0oikjhbgfTYHGVCFRERTY
-   JWT_SECRET=wer5tyuiookjhgfdefvbnmkju65rfvbnji876t5r43edfvghjui876t54re3wsxcfghuio0oikjhbgfTYHGVCFRERTY
+   DATABASE_URL=your_postgresql_connection_string
+   RESEND_API_KEY=your_resend_api_key
+   EMAIL_FROM=your_email_address
+   NUXT_AUTH_SECRET=your_auth_secret_key
+   JWT_SECRET=your_jwt_secret_key
    ```
 
 2. **Deploy with Production Schema:**
