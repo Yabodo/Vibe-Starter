@@ -31,6 +31,10 @@ export default defineNuxtConfig({
     authOrigin: process.env.AUTH_ORIGIN || process.env.NUXT_AUTH_URL,
     plausibleApiKey: process.env.PLAUSIBLE_API_KEY,
     
+    // Email configuration
+    resendApiKey: process.env.RESEND_API_KEY,
+    emailFrom: process.env.EMAIL_FROM,
+    
     // Public keys (exposed to client-side)
     public: {
       authUrl: process.env.NUXT_AUTH_URL || 'http://localhost:3000',

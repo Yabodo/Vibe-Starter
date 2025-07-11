@@ -83,12 +83,19 @@
       {{ error }}
     </div>
     
-    <p class="text-center mt-4 text-gray-600 dark:text-gray-400">
-      {{ $t('auth.signin.noAccount') }}
-      <NuxtLink to="/auth/signup" class="text-blue-600 dark:text-blue-400 hover:underline">
-        {{ $t('auth.signin.signUp') }}
-      </NuxtLink>
-    </p>
+    <div class="mt-4 space-y-2 text-center">
+      <p class="text-gray-600 dark:text-gray-400">
+        <NuxtLink to="/auth/forgot-password" class="text-blue-600 dark:text-blue-400 hover:underline text-sm">
+          {{ $t('auth.signin.forgotPassword') }}
+        </NuxtLink>
+      </p>
+      <p class="text-gray-600 dark:text-gray-400">
+        {{ $t('auth.signin.noAccount') }}
+        <NuxtLink to="/auth/signup" class="text-blue-600 dark:text-blue-400 hover:underline">
+          {{ $t('auth.signin.signUp') }}
+        </NuxtLink>
+      </p>
+    </div>
   </div>
 </template>
 

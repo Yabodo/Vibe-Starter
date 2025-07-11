@@ -31,6 +31,14 @@ model User {
   twoFactorSecret  String?
   backupCodes      String? // JSON array of backup codes
   
+  // Email verification
+  emailVerified    Boolean @default(false)
+  emailVerifiedAt  DateTime?
+  
+  // Password reset
+  resetToken       String?
+  resetTokenExpiry DateTime?
+  
   subscription Subscription?
   sessions     Session[]
   accounts     Account[]
@@ -139,4 +147,34 @@ model Event {
   @@index([name])
   @@index([createdAt])
   @@index([userId])
+}
+
+model EmailTemplate {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  subject     String
+  htmlContent String
+  textContent String?
+  variables   String?  // JSON array of variable names
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@index([name])
+}
+
+model EmailLog {
+  id          String   @id @default(cuid())
+  to          String
+  from        String
+  subject     String
+  template    String?
+  status      String   // sent, failed, pending
+  error       String?
+  sentAt      DateTime?
+  createdAt   DateTime @default(now())
+  
+  @@index([to])
+  @@index([status])
+  @@index([createdAt])
 }

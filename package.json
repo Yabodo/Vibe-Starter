@@ -22,6 +22,7 @@
     "@sidebase/nuxt-auth": "^0.8.0",
     "analytics": "^0.8.16",
     "bcryptjs": "^2.4.3",
+    "handlebars": "^4.7.8",
     "jsonwebtoken": "^9.0.2",
     "mixpanel-browser": "^2.66.0",
     "nuxt": "^3.17.6",
@@ -30,6 +31,7 @@
     "posthog-js": "^1.257.0",
     "prisma": "^5.22.0",
     "qrcode": "^1.5.4",
+    "resend": "^4.6.0",
     "vue": "^3.5.17",
     "vue-router": "^4.5.1"
   },

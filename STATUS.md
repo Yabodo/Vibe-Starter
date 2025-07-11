@@ -147,7 +147,7 @@ A comprehensive user and subscription management platform built with Nuxt.js, fe
 - **Two-Factor Authentication**: 100% Complete ✅
 
 ### **Next Milestones**
-2. **Week 3-4**: Social login integration (Google, GitHub)
+2. **Week 3-4**: Social login integration (Google, GitHub) (SKIP!)
 3. **Month 2**: Analytics dashboard and usage tracking
 4. **Month 3**: Community features and donator perks
 5. **Month 4**: Mobile app (PWA) development
