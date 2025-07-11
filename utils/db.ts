@@ -329,75 +329,19 @@ if (shouldUseMock) {
     return clientInstance
   }
   
-  // Create a proxy object that lazy-loads the real client
-  prisma = {
-    user: {
-      findUnique: async (...args: any[]) => {
-        const client = await getPrismaClient()
-        return client.user.findUnique(...args)
-      },
-      create: async (...args: any[]) => {
-        const client = await getPrismaClient()
-        return client.user.create(...args)
-      },
-      update: async (...args: any[]) => {
-        const client = await getPrismaClient()
-        return client.user.update(...args)
-      },
-      delete: async (...args: any[]) => {
-        const client = await getPrismaClient()
-        return client.user.delete(...args)
-      }
-    },
-    subscription: {
-      findUnique: async (...args: any[]) => {
-        const client = await getPrismaClient()
-        return client.subscription.findUnique(...args)
-      },
-      create: async (...args: any[]) => {
-        const client = await getPrismaClient()
-        return client.subscription.create(...args)
-      },
-      update: async (...args: any[]) => {
-        const client = await getPrismaClient()
-        return client.subscription.update(...args)
-      },
-      delete: async (...args: any[]) => {
-        const client = await getPrismaClient()
-        return client.subscription.delete(...args)
-      }
-    },
-    account: {
-      findUnique: async (...args: any[]) => {
-        const client = await getPrismaClient()
-        return client.account.findUnique(...args)
-      },
-      findMany: async (...args: any[]) => {
-        const client = await getPrismaClient()
-        return client.account.findMany(...args)
-      },
-      create: async (...args: any[]) => {
-        const client = await getPrismaClient()
-        return client.account.create(...args)
-      },
-      update: async (...args: any[]) => {
-        const client = await getPrismaClient()
-        return client.account.update(...args)
-      },
-      delete: async (...args: any[]) => {
-        const client = await getPrismaClient()
-        return client.account.delete(...args)
-      }
-    },
-    $connect: async () => {
-      const client = await getPrismaClient()
-      return client.$connect()
-    },
-    $disconnect: async () => {
-      const client = await getPrismaClient()
-      return client.$disconnect()
+  // Create a proxy object that lazy-loads the real client and forwards all methods
+  prisma = new Proxy({}, {
+    get(target, prop) {
+      return new Proxy({}, {
+        get(modelTarget, method) {
+          return async (...args: any[]) => {
+            const client = await getPrismaClient()
+            return client[prop][method](...args)
+          }
+        }
+      })
     }
-  }
+  })
 }
 
 // Ensure the client disconnects when the process exits
