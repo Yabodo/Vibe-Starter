@@ -11,7 +11,9 @@
     "vercel-build": "prisma generate && nuxt build",
     "db:migrate": "prisma migrate deploy",
     "db:generate": "prisma generate",
-    "db:studio": "prisma studio"
+    "db:studio": "prisma studio",
+    "db:setup:dev": "node scripts/setup-db.js dev",
+    "db:setup:prod": "node scripts/setup-db.js prod"
   },
   "dependencies": {
     "@auth/core": "^0.37.2",

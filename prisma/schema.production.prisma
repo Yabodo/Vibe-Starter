@@ -1,0 +1,180 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "windows", "debian-openssl-3.0.x", "rhel-openssl-1.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  name         String?
+  password     String
+  role         String   @default("USER") // USER, MODERATOR, ADMIN
+  profileImage String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  lastLoginAt  DateTime?
+  isActive     Boolean  @default(true)
+  
+  // 2FA fields (optional)
+  twoFactorEnabled Boolean @default(false)
+  twoFactorSecret  String?
+  backupCodes      String? // JSON array of backup codes
+  
+  // Email verification
+  emailVerified    Boolean @default(false)
+  emailVerifiedAt  DateTime?
+  
+  // Password reset
+  resetToken       String?
+  resetTokenExpiry DateTime?
+  
+  subscription Subscription?
+  sessions     Session[]
+  accounts     Account[]
+  activities   UserActivity[]
+  pageViews    PageView[]
+  events       Event[]
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Subscription {
+  id        String   @id @default(cuid())
+  userId    String   @unique
+  status    String
+  tier      String
+  startDate DateTime @default(now())
+  endDate   DateTime?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model UserActivity {
+  id        String   @id @default(cuid())
+  userId    String
+  action    String   // login, logout, profile_update, subscription_change, etc.
+  details   String?  // JSON string with additional data
+  ipAddress String?
+  userAgent String?
+  createdAt DateTime @default(now())
+  
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@index([userId])
+  @@index([action])
+  @@index([createdAt])
+}
+
+model SystemMetrics {
+  id          String   @id @default(cuid())
+  metricType  String   // daily_active_users, new_registrations, subscription_conversions, etc.
+  value       Float
+  date        DateTime @default(now())
+  metadata    String?  // JSON string with additional data
+  
+  @@index([metricType])
+  @@index([date])
+}
+
+model PageView {
+  id        String   @id @default(cuid())
+  path      String
+  title     String?
+  referrer  String?
+  userAgent String?
+  ipAddress String?
+  userId    String?
+  sessionId String?
+  createdAt DateTime @default(now())
+  
+  user User? @relation(fields: [userId], references: [id], onDelete: SetNull)
+  
+  @@index([path])
+  @@index([createdAt])
+  @@index([userId])
+}
+
+model Event {
+  id         String   @id @default(cuid())
+  name       String   // event name like 'Sign Up', 'Subscription Upgrade', etc.
+  properties String?  // JSON string with event properties
+  userId     String?
+  sessionId  String?
+  ipAddress  String?
+  userAgent  String?
+  createdAt  DateTime @default(now())
+  
+  user User? @relation(fields: [userId], references: [id], onDelete: SetNull)
+  
+  @@index([name])
+  @@index([createdAt])
+  @@index([userId])
+}
+
+model EmailTemplate {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  subject     String
+  htmlContent String
+  textContent String?
+  variables   String?  // JSON array of variable names
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@index([name])
+}
+
+model EmailLog {
+  id          String   @id @default(cuid())
+  to          String
+  from        String
+  subject     String
+  template    String?
+  status      String   // sent, failed, pending
+  error       String?
+  sentAt      DateTime?
+  createdAt   DateTime @default(now())
+  
+  @@index([to])
+  @@index([status])
+  @@index([createdAt])
+}
