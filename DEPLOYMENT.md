@@ -25,12 +25,29 @@ The production 500 errors were caused by database provider mismatch. Here's how 
    git push
    ```
 
-3. **Run Database Migration in Production:**
-   After deployment, you may need to run:
+3. **⚠️ REQUIRED: Initial Database Setup**
+   After your first deployment, you MUST create the database tables:
+   
    ```bash
-   # In Vercel Functions tab, or via Vercel CLI
-   npx prisma db push
+   # Install Vercel CLI if not already installed
+   npm install -g vercel
+   
+   # Link your local project to Vercel
+   vercel link
+   
+   # Pull production environment variables
+   vercel env pull .env.production
+   
+   # Set the production DATABASE_URL and create tables
+   # Replace with your actual DATABASE_URL from Vercel dashboard
+   $env:DATABASE_URL="your_production_postgresql_url_here"
+   npx prisma db push --accept-data-loss --schema=prisma/schema.production.prisma
    ```
+   
+   **⚠️ Important**: 
+   - This step is **required** for the initial deployment only
+   - Use `--accept-data-loss` flag only for the first migration
+   - Future schema changes should use proper migrations without this flag
 
 ### Development vs Production:
 

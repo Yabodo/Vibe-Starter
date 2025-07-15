@@ -45,6 +45,8 @@ coverage/
 .env.test.local
 .env.production.local
 .env.*.local
+.env.production
+.env.plausible
 
 # Keep example files
 !.env.example
@@ -299,7 +301,6 @@ dist
 
 # Gatsby files (if migrating)
 .cache/
-public
 
 # Storybook build outputs
 storybook-static
@@ -340,3 +341,4 @@ docs/dist/
 # ===========================================
 # END OF GITIGNORE
 # ===========================================
+.vercel
