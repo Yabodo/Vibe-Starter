@@ -1,10 +1,10 @@
 import { prisma } from '~/utils/db'
 import jwt from 'jsonwebtoken'
 
-const SUBSCRIPTION_TIERS = ['PREMIUM', 'DONATOR']
+const SUBSCRIPTION_TIERS = ['STARTER', 'PREMIUM']
 const TIER_PRICES = {
-  PREMIUM: 4.99,
-  DONATOR: 19.99
+  STARTER: 4.99,
+  PREMIUM: 29.99
 }
 
 export default defineEventHandler(async (event) => {

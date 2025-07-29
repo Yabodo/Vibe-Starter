@@ -35,13 +35,20 @@ export default defineNuxtConfig({
     resendApiKey: process.env.RESEND_API_KEY,
     emailFrom: process.env.EMAIL_FROM,
     
+    // Stripe configuration
+    stripeSecretKey: process.env.STRIPE_SECRET_KEY,
+    stripeWebhookSecret: process.env.STRIPE_WEBHOOK_SECRET,
+    
     // Public keys (exposed to client-side)
     public: {
       authUrl: process.env.NUXT_AUTH_URL || 'http://localhost:3000',
       i18nEnabled: process.env.I18N_ENABLED !== 'false',
       siteUrl: process.env.SITE_URL || 'localhost:3000',
       posthogKey: process.env.POSTHOG_KEY,
-      posthogHost: process.env.POSTHOG_HOST
+      posthogHost: process.env.POSTHOG_HOST,
+      
+      // Stripe public key
+      stripePublishableKey: process.env.STRIPE_PUBLISHABLE_KEY
     }
   },
   
